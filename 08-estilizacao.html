@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="08.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        /* Para especificar estilos em um componente React, é necessario atentar- se para as seguintes regras:
+        1) O nome das propriedades nao pode ter Hifem, deve se usar a convenção CamelCase em vez disso. P.Ex., background-color deve ser escrito como backgroundColor.
+        2) Todos os valores das propriedades que nao forem numericos devem ser informados entre aspas. Ex:300px ~~> '300px'.
+        3) As diferentes propriedades sao separadas por VIRGULA (e nao por ponto e virgula, como em CSS).
+        4) Algumas propriedades nao renomeadas em JSX porque seu nome em CSS corresponde a uma palavra reservada da linguagem JavaScript. P Ex: 'class' se torna 'className' 
+        e 'for' se torna 'html.for'
+        */
+
+        /* Em CSS, escreveriamos uma classe de estilo assim:
+        .estilo {
+            background_color: orange;
+            font-size: 30px;
+            font-family: "'Curier New', monospace";
+            border: 4px dotted blue;
+        }
+        */
+
+        //O mesmo estilo acima representado como um objeto JAvaScript:
+        const estilo = {
+            backgroundColor: 'orange',
+            fontSize: '30px',
+            fontFamily: "Courier New', monospace",
+            border: '4px dotted blue'
+        }
+
+        /* A seguir um componente de caixa altamente personalizado. Recebe tanto props personalizados ( style e size) quanto props genericas ()...props). Alem disso provê um valor padrao pára a prop size caso o valor desta nao tenha sido especificado.
+        */
+
+        const boxItalic = ({ style, size = 'small', ...props }) =>
+            <div
+                className={'box box--${size}'}
+                style={{ fontStyle: 'italic', ...style }}
+                {...props}
+            />
+
+        const constainer = <>
+            <BoxItalic
+                id="box1"
+                style={{
+                    backgroundColor: 'violet',
+                    color: 'beige'
+                }}
+            >
+            Primeira caixa em italico
+            </BoxItalic>
+
+            <BoxItalic
+                id="box2"
+                children="Caixa Grande"
+                title="caixa grande"
+                size="large"
+                nadaaver="seila"
+                style={{
+                    borderColor: 'orange',
+                    color: 'white',
+                    backgroundColor: 'chocolate'
+                }}
+            >
+            Segunda caixa em italico
+            </BoxItalic>
+
+            <BoxItalic
+                id="box3"
+                children="Caixa media sem italico"
+                size="medium"
+                style={{
+                    fontStyle: 'normal',
+                    borderColor: 'navy',
+                    backgroundColor: 'aliceblue'
+                }}
+
+            />
+        </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(container)
+
+    </script>
+
+</body>
+
+</html>
