@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercicio de Fixação 3- (Professor)</title>
+</head>
+<body>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function Form() {
+      
+      const [valorReais, setValorReais] = React.useState('0')
+      const [cotacaoDolar,setCotacaoDolar] = React.useState('0')
+     //Estado calculado
+      const [resultado,setResultado] = React.useState()
+      // Estado Calculado
+      const valorConvertido = valorReais / cotacaoDolar
+
+      // 5) Escreva uma única função handleChange para interceptar a mudança
+      //nos dois inputs, efetuar o cálculo da conversão e atualizar o valor de uma variável com o resultado.
+      function handleChange(value) {
+        const valorReais = Number(valorReais.current.value)
+        const cotacaoDolar = Number(cotacaoDolar.current.value)
+
+        
+
+        /* 6) Usando a variável que foram atualizada em handleChange,
+        //exiba na div de resultado o valor convertido.
+        resultado.current.textContent = valorConvertido.toLocaleString('en-US',    
+          {
+            style: 'currency',   
+            currency: 'USD'     
+          }
+        )
+      } */
+      return <>
+        <h1>Conversor de moedas</h1>
+        {/* 1) Crie um formulário e coloque nele um input numérico com o label "Valor em reais". */ }
+          <div>
+            <label>
+              <span>Valor em reais :</span><br />
+              <input type='number'onChange{event => setValorReais(event.target.value) } />
+            </label>
+          </div>
+          { /* 2) Coloque outro input numérico com o label "Cotação do dólar". */ }
+          <div>
+            <label>
+              <span>Cotação do dólar</span><br />
+              <input type="checkbox" onChange={ event => setCotacaoDolar(event.target.checked) } />
+            </label>
+          </div>
+          { /* 3) Coloque, também, uma div para exibir o resultado da conversão de moeda. */ }
+          <div> {resultado.tofixed(2)}</div>
+        </form>
+      </>
+    }
+    // Renderiza o formulario na pagina
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<Form />)
+  </script>  
+</body>
+</html>
