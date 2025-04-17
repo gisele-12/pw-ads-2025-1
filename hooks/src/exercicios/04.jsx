@@ -2,8 +2,20 @@ import * as React from 'react'
 
 function Board() {
   // 🐨 squares é o estado para este componente. Adicione useState para squares
-  //const squares = Array(9).fill(null)
-  const [squares, setSquares] = React.useState(Array(9).fill(null))
+  // const squares = Array(9).fill(null)
+
+  // Ao inicializar o valor da variável 'squares', verificamos se existe
+  // um estado salvo no localStorage. Caso haja, precisamos conveter o
+  // valor encontrado (que é uma string) para vetor, usando JSON.parse().
+  // Caso não exista valor salvo no localStorage, usamos o valor padrão
+  // Array(9).fill(null) (tabuleiro vazio).
+  // Para garantir que o carregamento a partir do localStorage aconteça
+  // apenas uma vez, por ocasião do carregamento do componente, o valor
+  // inicial da variável de estado será fornecido por uma função () =>
+  // (lazy initializer)
+  const [squares, setSquares] = React.useState(
+    () => JSON.parse(window.localStorage.getItem('squares')) ?? Array(9).fill(null)
+  )
 
   // 🐨 Precisaremos dos seguintes itens de estados derivados:
   // - nextValue ('X' ou 'O')
@@ -36,6 +48,7 @@ function Board() {
     // 🐨 ajuste o valor do quadrado que foi selecionado
     // 💰 `squaresCopy[square] = nextValue`
     squaresCopy[square] = nextValue
+    
     // 🐨 atribua a cópia à matriz dos quadrados
     setSquares(squaresCopy)
   }
@@ -53,6 +66,16 @@ function Board() {
       </button>
     )
   }
+
+  // useEffect para salvar o valor da variável de estado squares
+  // no localStorage sempre que ela for atualizada
+  React.useEffect(() => {
+    // localStorage só suporta o armazenamento de valores do tipo
+    // string. Por isso, para guardar o valor da variável de estado
+    // squares, que é um vetor, precisamos antes convertê-lo em 
+    // string usando JSON.stringify().
+    window.localStorage.setItem('squares', JSON.stringify(squares))
+  }, [squares]) // <~ o useEffect somente será executado quando squares for alterado
 
   return (
     <div>
@@ -79,7 +102,7 @@ function Board() {
       <hr />
       {
         squares.map((val, idx) => (
-          <p>{idx} = &gt; '{val}' </p>
+          <p>{idx} =&gt; '{val}'</p>
         ))
       }
     </div>
