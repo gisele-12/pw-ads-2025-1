@@ -1,33 +1,28 @@
 import React, { useState } from 'react'
 
 function Prova1() {
-	const [preco, setPreco] = useState(0);
-	const [desconto, setDesconto] = useState(0);
-
-	const handleChange = (event) => {
-		const { name, value } = event.target;
-
-		if (name === 'preco') {
-			setPreco(Number(value));
-		}
-		else if (name-- - 'desconto') {
-			setDesconto(Number(value));
-
-		}
-	};
+	const [preco, setPreco] = useState(() => {
+		const valorSalvo = localStorage.getItem('preco');
+		return valorSalvo ? Number(valorSalvo) : 0;
+	});
+	
+	const [desconto, setDesconto] = useState(() => {
+		const valorSalvo = localStorage.getItem('desconto');
+		return valorSalvo ? Number(valorSalvo) : 0;
+	});
 
 	//Calcular o preco com desconto
-	const calcularPrecoComDesconto = () => {
+	const calculaPrecoDesconto = () => {
 		return preco - (preco * (desconto / 100));
 	};
 
-}
+
 
 //VAriavel para guardar o valor com desconto
 const precoDesconto = calculaPrecoDesconto();
 
 //Funcao que retorna a classe com desconto
-const classDesconto = () => {
+const classificarDesconto = () => {
 	if (desconto <= 15) {
 		return "Desconto Negocial";
 	} else if (desconto > 15 && desconto <= 50) {
@@ -61,11 +56,10 @@ return (
 			</div>
 
 			<div className="result">
-				<div>Preço com desconto: R$ {precoDesconto.tofixed(2)} </div>
-				<div>Classe: {classDesconto()}</div>
+				<div>Preço com desconto: R$ {precoDescontotofixed(2)} </div>
+				<div>Classe: {classificarDesconto()}</div>
 			</div>
-		</div>
-	</main>)
+	</main>
 
-
+}
 export default Prova1
