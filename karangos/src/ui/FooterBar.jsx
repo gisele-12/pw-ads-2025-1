@@ -17,7 +17,7 @@ export default function FooterBar() {
         }} // sx é usado no lugar no style, é mais aprimorado quando se usa 
         >
             <Typography variant="caption" gutterBottom>
-            Desenvolvido e mantido com <LocalCafeIcon fontSize="small" /> e muita fé, por
+            Desenvolvido e mantido com <LocalCafeIcon fontSize="small" /> e fé, por
                 <a href="mailto:emaildigisele@gmail.com"> Gisele Roncoleta</a>
                 </Typography>
     </Box>
