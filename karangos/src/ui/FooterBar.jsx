@@ -25,7 +25,7 @@ export default function FooterBar() {
           }
         }}
       >
-        Desenvolvido e mantido com <LocalCafeIcon fontSize="small" /> por <a href="mailto:professor@faustocintra.com.br">Prof. Fausto Cintra</a>
+        Desenvolvido e mantido com <LocalCafeIcon fontSize="small" /> e fé, por <a href="mailto:emaildigisele@gmail.com"> Gisele Roncoleta</a>
       </Typography>
     </Box>
   );
