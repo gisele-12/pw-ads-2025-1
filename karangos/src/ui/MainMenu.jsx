@@ -4,6 +4,8 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom'
+import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
 
 export default function MainMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -66,7 +68,6 @@ export default function MainMenu() {
           Cadastro de clientes
         </MenuItem>
 
-        {/* Adicionadas entradas para veículos */}
         <MenuItem 
           onClick={handleClose}
           component={Link}
@@ -81,6 +82,15 @@ export default function MainMenu() {
           to="/cars/new"
         >
           Cadastro de Veiculos
+        </MenuItem>
+
+        <MenuItem 
+          onClick={handleClose}
+          component={Link}
+          to="/Sobre"
+          divider
+        >
+          Sobre o Projeto Karangos
         </MenuItem>
       </Menu>
     </div>

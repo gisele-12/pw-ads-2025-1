@@ -229,6 +229,7 @@ export default function CarsForm() {
           <FormControlLabel
             control={
               <Checkbox
+                name="imported"
                 checked={car.imported === 1}
                 onChange={(event) => {
                   const carCopy = { ...car }
